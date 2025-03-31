@@ -1,0 +1,106 @@
+{%load static %}
+
+
+
+<nav class="navbar navbar-expand-lg" style="background-color:#161026;">
+    <div class="container-fluid">
+       <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'images/logo_blanco_mexico.png' %}" alt="logo" width="200" height="">
+      </a>
+  
+   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-space-between" id="navbarSupportedContent">
+  
+        <ul class="navbar-nav   mb-lg-0">
+          <li class="nav-item" style="margin: 0 10px;">
+            <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'inicio' %}">Inicio</a>
+          </li>
+  
+
+
+          {% if user.is_authenticated %}
+         
+          <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active" href="{% url 'guia' %}" aria-current="page"  style="color:#ffff;" >Guía</a>
+         </li>
+         <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active"  aria-current="page"  style="color:#ffff;" href="https://wromexico.org/.org/">WROMEXICO2024</a>
+         </li>
+         <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active" href="{% url 'participantes' %}" aria-current="page"  style="color:#ffff;" >Participantes</a>
+         </li>
+         <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active" href="{% url 'equipos' %}" aria-current="page"  style="color:#ffff;" >Equipos</a>
+         </li>
+         
+         
+         <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active" aria-current="page"  style="color:#ffff; font-weight:bold;" href="{% url 'usuarios' %}">Ver Perfil</a>
+         </li>
+ 
+         <li class="nav-item" style="margin: 0 10px;">
+           <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'logout' %}">Salir</a>
+         </li>
+ 
+ 
+         {% else %}
+ 
+          
+    <li class="nav-item" style="margin: 0 10px;">
+    <a class="nav-link active" href="{% url 'guia' %}" aria-current="page"  style="color:#ffff;" >Guía</a>
+    </li>
+      <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active"  aria-current="page"  style="color:#ffff;" href="https://wromexico.org/">WROMEXICO2024</a>
+      </li> 
+
+      <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'subirimagenes_resultadosv' %}">Resultados</a>
+      </li>
+
+
+          {% comment %} <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active" href="{% url 'resultados'   %}" aria-current="page"  style="color:#ffff;" >Resultados Regionales</a>
+      
+      </li>
+
+
+      <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active" href="{% url 'resultados_finalistas'   %}" aria-current="page"  style="color:#ffff;" >Resultados Final Nacional </a>
+      </li> {% endcomment %}
+
+       <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'register' %}">Registrarse</a>
+      </li> 
+
+       <li class="nav-item" style="margin: 0 10px;">
+        <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'login' %}">Ingresar</a>
+      </li>
+
+      {% endif %}
+
+    </ul>
+      
+</div>
+</div>
+</nav>
+
+
+
+      {% if messages %}
+{% for message in messages %}
+  <div class="alert alert-{{message.tags}} fade show .fade-out">{{message}}</div>
+
+{% endfor %}
+{% endif %}
+
+
+{% if form.non_field_errors %}
+<div class="non-field-errors">
+{% for err in form.non_field_errors %}
+  <div class="alert alert-warning fade show .fade-out">{{err}}</div>
+{% endfor %}
+</div>
+{% endif %}

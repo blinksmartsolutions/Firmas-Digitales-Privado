@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block titulo %} Formulario para Agregar archivos  {%endblock%}
+
+
+{% block contenido%}
+
+{% load crispy_forms_tags %}
+
+
+    <h1 class="text-center mt-4 text-light">{{ formulario.title }} </h1>
+
+    <h3 class="text-center mt-4 text-light">{{ formulario.title2 }} </h3>
+  
+<style type="text/css">
+    
+
+
+</style>
+
+
+
+<div class="container-fluid ">
+    <div class="row" style="margin:60px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-4 card mx-4  py-5 ">
+                    <form role="form" enctype="multipart/form-data"  method="POST"  style="color:black;"> {% csrf_token %}
+                        <div class="form-group">
+                              <div class="form-group text-light">
+
+        {{formulario| crispy}}
+
+
+
+
+
+         </div>
+
+                        
+                        <button type="submit" class="btn  btn-sm btn-primary mt-4" >
+                            Confirmar envío
+                        </button>
+
+
+                           <a href="{% url 'dashboard' %}" class="btn  btn-sm btn-danger mt-4" >
+                           Regresar 
+                        </a>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

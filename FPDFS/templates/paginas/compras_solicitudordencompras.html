@@ -1,0 +1,426 @@
+
+{% comment %} ///////////////////////////////////////////////////////////// {% endcomment %}
+
+
+<div class="card mb-4 shadow">
+    <div class="card-header bg-dark text-light">
+             <i class="fas fa-table   me-1 text-light"></i>
+             LISTA DE SOLICITUD DE ORDENES DE COMPRAS
+            </div>
+    <nav>
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+
+
+            <button class="nav-link active" id="nav-NUEVOS-SOC-tab" data-bs-toggle="tab" data-bs-target="#nav-NUEVOS-SOC" type="button" role="tab" aria-controls="nav-NUEVOS-SOC" aria-selected="true">NUEVOS</button>
+            <button class="nav-link" id="nav-RECHAZADO-SOC-tab" data-bs-toggle="tab" data-bs-target="#nav-RECHAZADO-SOC" type="button" role="tab" aria-controls="nav-RECHAZADO-SOC" aria-selected="false">RECHAZADO</button>
+            <button class="nav-link" id="nav-ALL-SOC-tab" data-bs-toggle="tab" data-bs-target="#nav-ALL-SOC" type="button" role="tab" aria-controls="nav-ALL-SOC" aria-selected="false">TODO</button>
+            
+
+        </div>
+    </nav>
+
+    <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+  
+
+
+
+{% comment %} //////////////NUEVOS-SOC (firmadas)////////////////{% endcomment %}
+
+<div class="tab-pane fade active show" id="nav-NUEVOS-SOC" role="tabpanel" aria-labelledby="nav-NUEVOS-SOC-tab">
+
+<div class="card-body table-responsive">
+
+<table id ="myTable"  class="
+table 
+table-striped   
+table-bordered   
+table-hover 
+table-secondary 
+text-center 
+dataTable 
+display 
+table-hover
+">
+
+
+<thead >
+<tr  >
+<th style="text-align: center;">#RE</th>   
+<th style="text-align: center;">#SOC</th>          
+<th style="text-align: center;">FECHA</th> 
+<th style="text-align: center;">ESTATUS</th>
+<th style="text-align: center;">OPCIONES</th> 
+</tr>
+</thead>
+<tbody>
+
+</tr>
+</thead>
+<tbody>
+
+
+    
+{% for pdf in solicitud_ordenes_compras_enviadas_F %}
+        
+<tr>
+<td>
+
+
+{{pdf.requisicionCancelada.documento_pdf.id}}
+
+
+
+
+
+
+</td>
+
+
+
+<td>{{pdf.id}}</td>
+
+
+
+
+<td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+
+
+<td > 
+
+<span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
+
+</td>
+                                            
+                            
+                            
+                             {% comment %} opciones  {% endcomment %}
+                                            
+                            <td> 
+                            
+                            
+                            
+                            {% comment %} 
+                            
+                                   <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}}" target="_blank">ver </a>  
+                                     {% endcomment %}
+                            
+                                      
+                              <!-- Button to Open the Modal -->
+                              <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#soccmodalN{{forloop.counter0}}">
+                                Ver
+                              </button>
+                            
+                              {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalN" pdf=pdf.documento_pdf.url enviado=pdf  %}  
+                            
+                            
+                                              {% comment %} <a class="btn  btn-sm btn-primary"
+                                               href="{{pdf.documento_pdf.documento_pdf.documento_pdf.url}}"
+                                              target="_blank">ver </a> {% endcomment %}
+                            
+                            
+                            {% if  pdf.ESTATUS_DOCUMENTO ==  "FIRMADO" %}
+                            
+
+                            <a href="{% url 'cargarpdfOrdendeCompra' pdf.id   %}" 
+                            class="btn  btn-sm btn-success btnEliminacion">
+                            CREAR ORDEN DE COMPRA </a>
+                            
+                            
+                            
+                            <a href="{% url 'socgccambiarEstatusPdf' pdf.id   %}" 
+                            class="btn  btn-sm btn-danger btnEliminacion">RECHAZAR
+                            </a>
+
+                            {%endif%}
+                            
+                                            </td> 
+                                        </tr>
+                                   
+                                        {%endfor%}
+            
+</table>
+</div>
+</div>
+
+
+
+  {% comment %} //////////////RECHAZADOS ////////////////{% endcomment %}
+
+        <div class="tab-pane fade" id="nav-RECHAZADO-SOC" role="tabpanel" aria-labelledby="nav-RECHAZADO-SOC-tab">
+            
+            <div class="card-body table-responsive">
+
+                <table id ="myTable"  class="
+                table 
+                table-striped   
+                table-bordered   
+                table-hover 
+                table-secondary 
+                text-center 
+                dataTable 
+                display 
+                table-hover
+                ">
+                    <thead >
+                    <tr  >
+                        <th style="text-align: center;">#RE</th>   
+                        <th style="text-align: center;">#SOC</th>          
+                        <th style="text-align: center;">FECHA</th> 
+                        <th style="text-align: center;">ESTATUS</th>
+                        <th style="text-align: center;">OPCIONES</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                
+        
+        {% for pdf in solicitud_ordenes_compras_enviadas_R %}
+        
+                             <tr>
+
+            
+<td>
+
+
+{{pdf.requisicionCancelada.documento_pdf.id}}
+
+
+
+
+
+
+</td>
+
+
+
+<td>{{pdf.id}}</td>
+
+
+
+
+
+
+
+
+
+
+<td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+<td>        
+<span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+</td>
+      
+
+
+
+{% comment %} opciones  {% endcomment %}
+
+<td> 
+
+
+
+{% comment %} 
+
+<a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}}" target="_blank">ver </a>  
+{% endcomment %}
+
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#soccmodalR{{forloop.counter0}}">
+Ver
+</button>
+
+{% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalR" pdf=pdf.documento_pdf.url enviado=pdf %}  
+
+
+    {% comment %} <a class="btn  btn-sm btn-primary"
+    href="{{pdf.documento_pdf.documento_pdf.documento_pdf.url}}"
+    target="_blank">ver </a> {% endcomment %}
+
+
+    {% if  pdf.ESTATUS_DOCUMENTO ==  "FIRMADO" %}
+                            
+
+    <a href="{% url 'cargarpdfOrdendeCompra' pdf.id   %}" 
+    class="btn  btn-sm btn-success btnEliminacion">
+    CREAR ORDEN DE COMPRA </a>
+    
+    
+    
+    <a href="{% url 'socgccambiarEstatusPdf' pdf.id   %}" 
+    class="btn  btn-sm btn-danger btnEliminacion">RECHAZAR
+    </a>
+
+    {%endif%}
+
+</td> 
+</tr>
+
+{%endfor%}
+
+
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+
+
+
+
+{% comment %} //////////////TODOS ////////////////{% endcomment %}
+
+<div class="tab-pane fade" id="nav-ALL-SOC" role="tabpanel" aria-labelledby="nav-ALL-SOC-tab">
+ 
+    
+
+
+
+    <div class="card-body table-responsive">
+
+        <table id ="myTable"  class="
+        table 
+        table-striped   
+        table-bordered   
+        table-hover 
+        table-secondary 
+        text-center 
+        dataTable 
+        display 
+        table-hover
+        ">
+            <thead >
+            <tr  >
+                <th style="text-align: center;">#RE</th>   
+                <th style="text-align: center;">#SOC</th>          
+                <th style="text-align: center;">FECHA</th> 
+                <th style="text-align: center;">ESTATUS</th>
+                <th style="text-align: center;">OPCIONES</th> 
+            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+{% for pdf in solicitud_ordenes_compras_enviadas %}
+
+<tr>
+
+<td>
+
+
+{{pdf.requisicionCancelada.documento_pdf.id}}
+
+
+
+
+
+
+</td>
+
+
+
+<td>{{pdf.id}}</td>
+
+
+
+
+
+
+
+
+
+
+<td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+
+
+
+<td>
+
+
+    {% if   pdf.ESTATUS_DOCUMENTO == "Rechazado por Compras"%}
+    
+    <span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    
+    {% elif   pdf.ESTATUS_DOCUMENTO  == "FIRMADO"  %}
+    
+    <span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+
+    
+    {%else%}
+    
+    
+    
+    <span class="badge bg-primary"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    
+        {%endif%}
+    
+    
+
+
+
+    
+</td>
+
+
+
+{% comment %} opciones  {% endcomment %}
+
+<td> 
+
+
+
+{% comment %} 
+
+<a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}}" target="_blank">ver </a>  
+{% endcomment %}
+
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#soccmodalall{{forloop.counter0}}">
+Ver
+</button>
+
+{% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalall" pdf=pdf.documento_pdf.url enviado=pdf %}  
+
+
+{% comment %} <a class="btn  btn-sm btn-primary"
+href="{{pdf.documento_pdf.documento_pdf.documento_pdf.url}}"
+target="_blank">ver </a> {% endcomment %}
+
+
+{% if  pdf.ESTATUS_DOCUMENTO ==  "FIRMADO" %}
+                            
+
+<a href="{% url 'cargarpdfOrdendeCompra' pdf.id   %}" 
+class="btn  btn-sm btn-success btnEliminacion">
+CREAR ORDEN DE COMPRA </a>
+
+
+
+<a href="{% url 'socgccambiarEstatusPdf' pdf.id   %}" 
+class="btn  btn-sm btn-danger btnEliminacion">RECHAZAR
+</a>
+
+{%endif%}
+
+</td> 
+</tr>
+
+{%endfor%}
+            </tbody>
+        </table>
+            
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+

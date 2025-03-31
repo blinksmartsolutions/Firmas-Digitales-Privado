@@ -1,0 +1,173 @@
+{%load static %}
+
+
+
+<nav class="navbar navbar-expand-lg" style="background-color:#161026;">
+    <div class="container-fluid">
+       <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'images/logo_blanco_mexico.png' %}" alt="logo" width="200" height="">
+      </a>
+  
+   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-space-between" id="navbarSupportedContent">
+  
+        <ul class="navbar-nav   mb-lg-0">
+          <li class="nav-item" style="margin: 0 10px;">
+            <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'inicio' %}">Inicio</a>
+          </li>
+  
+
+
+{% if  user.username == "voluntario1"  %}
+  
+{% comment %} <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'asistencia_equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Asistencia de Final Nacional</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'asistencia_documentos_equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Asistencia  por documentos</a>
+</li>
+
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Informes de Equipo</a>
+</li>
+
+
+
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff; font-weight:bold;" href="{% url 'usuarios' %}">{{user.username}}</a>
+</li>
+
+ <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'logout' %}">Salir</a>
+</li> {% endcomment %}
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'voluntarios_categoria' %}" aria-current="page"  style="color:#ffff;" >Asistencia  |Estado Anzoategui </a>
+</li>
+
+{% comment %} <li class="nav-item dropdown" style="margin: 0 10px;">
+    <a aria-current="page"  style="color:#ffff;"  href="{% url 'meduca_regionales' %}"    >Todas las regionales</a>
+</li>
+
+
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'estadistica_admin' %}">Estadistica Regionales</a>
+</li> {% endcomment %}
+
+<li class="nav-item" style="margin: 0 10px;">
+
+<a class="nav-link active" aria-current="page" style="color:#ffff;"  href="{% url 'resultados_detallados' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina'   %}"> Resultados Regionales |Región Llanera - Andina</a>
+
+
+
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+
+
+
+<a class="nav-link active" aria-current="page" style="color:#ffff;"   href="{% url 'asistencia_documentos_equipos_regional' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina'   %}">Asistencia  por documentos |Región Llanera - Andina </a>
+
+</li>
+
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" aria-current="page" style="color:#ffff;"   href="{% url 'equipos_regionales' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina'   %}"> Informes de Equipo |Región Llanera - Andina </a>
+
+
+</li>
+
+
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff; font-weight:bold;" href="{% url 'usuarios' %}">{{user.username}}</a>
+</li>
+
+ <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'logout' %}">Salir</a>
+</li>
+
+
+{% elif user.username == "voluntario2"  %}
+
+{% comment %} <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'asistencia_equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Asistencia de Final Nacional</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'asistencia_documentos_equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Asistencia  por documentos</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'equipos_nacional' %}" aria-current="page"  style="color:#ffff;" >Informes de Equipo</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff; font-weight:bold;" href="{% url 'usuarios' %}">{{user.username}}</a>
+</li>
+
+ <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'logout' %}">Salir</a>
+</li> {% endcomment %}
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" href="{% url 'volsegundo' %}" aria-current="page"  style="color:#ffff;"> Asistencia Regional |Estado Anzoategui</a>
+</li>
+
+{% comment %} <li class="nav-item dropdown" style="margin: 0 10px;">
+    <a aria-current="page"  style="color:#ffff;"  href="{% url 'meduca_regionales' %}"    >Todas las regionales</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'estadistica_admin' %}">Estadistica Regionales</a>
+</li> {% endcomment %}
+
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" href="{% url 'resultados_detallados' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina'   %}" aria-current="page"  style="color:#ffff;" >Resultados Regionales |Región Llanera - Andina</a>
+</li>
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" href="{% url 'asistencia_documentos_equipos_regional' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina' %}" aria-current="page"  style="color:#ffff;" >Asistencia  por documentos |Región Llanera - Andina</a>
+</li>
+
+
+<li class="nav-item" style="margin: 0 10px;">
+<a class="nav-link active" href="{% url 'equipos_regionales' '08 de septiembre |  Gimnasio 12 de Febrero San Fernando de Apure | MINCYT | Región Llanera - Andina' %}" aria-current="page"  style="color:#ffff;" >Informes de Equipo |Región Llanera - Andina</a>
+</li>
+
+
+
+<li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff; font-weight:bold;" href="{% url 'usuarios' %}">{{user.username}}</a>
+</li>
+
+ <li class="nav-item" style="margin: 0 10px;">
+  <a class="nav-link active" aria-current="page"  style="color:#ffff;" href="{% url 'logout' %}">Salir</a>
+</li>
+
+
+
+{% endif %}
+
+</ul>
+  
+</div>
+</div>
+</nav>
+
+
+
+  {% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} fade show .fade-out">{{message}}</div>
+
+{% endfor %}
+{% endif %}

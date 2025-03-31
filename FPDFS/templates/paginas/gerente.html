@@ -1,0 +1,747 @@
+
+{%load static %}
+
+
+{% comment %} /////////////////////////////////////////////////////////////////////////////////////// {% endcomment %}
+
+
+<div class="card mb-4 shadow">
+    <div class="card-header bg-dark text-light">
+             <i class="fas fa-table   me-1 text-light "></i>
+                LISTA DE REQUISICIONES
+            </div>
+    <nav>
+        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-NUEVOS-tab" data-bs-toggle="tab" data-bs-target="#nav-NUEVOS" type="button" role="tab" aria-controls="nav-NUEVOS" aria-selected="true">NUEVOS</button>
+            <button class="nav-link" id="nav-FIRMADO-tab" data-bs-toggle="tab" data-bs-target="#nav-FIRMADO" type="button" role="tab" aria-controls="nav-FIRMADO" aria-selected="false">FIRMADO</button>
+            <button class="nav-link" id="nav-RECHAZADO-tab" data-bs-toggle="tab" data-bs-target="#nav-RECHAZADO" type="button" role="tab" aria-controls="nav-RECHAZADO" aria-selected="false">RECHAZADO</button>
+            <button class="nav-link" id="nav-ACEPTADOS-tab" data-bs-toggle="tab" data-bs-target="#nav-ACEPTADOS" type="button" role="tab" aria-controls="nav-ACEPTADOS" aria-selected="false">ACEPTADOS</button>
+            <button class="nav-link" id="nav-ALL-tab" data-bs-toggle="tab" data-bs-target="#nav-ALL" type="button" role="tab" aria-controls="nav-ALL" aria-selected="false">TODO</button>
+
+        </div>
+    </nav>
+
+
+    <div class="tab-content p-3 border bg-light" id="nav-tabContent">
+
+
+     {% comment %} //////////////NUEVOS ////////////////{% endcomment %}        
+        <div class="tab-pane fade active show" id="nav-NUEVOS" role="tabpanel" aria-labelledby="nav-NUEVOS-tab">
+           
+            <div class="card-body table-responsive">
+
+                <table id ="myTable"  class="
+                table 
+                table-striped   
+                table-bordered   
+                table-hover 
+                table-secondary 
+                text-center 
+                dataTable 
+                display 
+                table-hover
+                ">
+                    <thead>
+                    <tr>
+                    <th style="text-align: center;">#RE</th>
+                    <th style="text-align: center;">FECHA</th> 
+                    <th style="text-align: center;">Estatus</th>
+                    <th style="text-align: center;">OPCIONES</th>       
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                        
+        {% for pdf in requisiciones_enviadas_N %}
+        <tr>
+        <td>{{pdf.id}}</td>
+                                  
+
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+        
+        
+        <td>
+            <span class="badge bg-primary"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+           
+        </td>
+                      
+        
+        {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+        
+        {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTE{{forloop.counter0}}">
+            Ver
+        </button>
+            
+        {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="GERENTE" pdf=pdf.documento_pdf.url enviado=pdf%}  
+            
+            
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+
+
+        
+                   <a href="{% url 'sign_pdf'  pdf.id  %}"  
+                    class="btn  btn-sm btn-success btnEliminacion">
+                    FIRMAR</a>
+
+
+                     <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a> 
+        
+    
+        
+                {% comment %} rechazar {% endcomment %}
+                {% comment %} falta: agregar notificacion de rechazar documento 
+                enviar cambio de status a REQUISICION RECHAZADA
+                {% endcomment %}
+        
+        
+                    {% comment %} <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a> {% endcomment %}
+        
+        
+                    {%else%}
+        
+        
+        
+                   {%endif%} 
+        
+        </td> 
+                        
+                            
+                        </tr>
+
+
+                        {%endfor%}
+             
+                    </tbody>
+                </table>
+                    
+          
+                </div>
+      
+        
+
+
+
+        </div>
+
+
+
+
+        {% comment %} //////////////FIRMADOS ////////////////{% endcomment %}
+
+        <div class="tab-pane fade" id="nav-FIRMADO" role="tabpanel" aria-labelledby="nav-FIRMADO-tab">
+  
+            <div class="card-body table-responsive">
+
+                <table id ="myTable"  class="
+                table 
+                table-striped   
+                table-bordered   
+                table-hover 
+                table-secondary 
+                text-center 
+                dataTable 
+                display 
+                table-hover
+                ">
+                    <thead >
+                    <tr  >
+                    <th style="text-align: center;">#RE</th>
+                    <th style="text-align: center;">FECHA</th> 
+                    <th style="text-align: center;">Estatus</th>
+                    <th style="text-align: center;">OPCIONES</th> 
+                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+    
+        {% for pdf in requisiciones_enviadas_F %}
+        
+                             <tr>
+                                <td  >{{pdf.id}}</td>
+                                  
+        
+        
+        
+                    
+        
+        
+ 
+        
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+
+
+
+           <td > 
+         
+         <span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
+        
+        </td>
+                                    
+        
+        
+                                    {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+                 {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEF{{forloop.counter0}}">
+            Ver
+            </button>
+            
+            {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="GERENTEF" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            
+            
+            
+            
+            
+        
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+        
+                   <a href="{% url 'sign_pdf'  pdf.id  %}"  
+                    class="btn  btn-sm btn-success btnEliminacion">
+                    FIRMAR</a>
+        
+        
+                {% comment %} rechazar {% endcomment %}
+                {% comment %} falta: agregar notificacion de rechazar documento 
+                enviar cambio de status a REQUISICION RECHAZADA
+                {% endcomment %}
+        
+        
+                    <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a>
+        
+        
+                    {%else%}
+        
+        
+        
+                   {%endif%} 
+        
+        </td> 
+                        
+                            
+                        </tr>
+
+       
+                        {%endfor%}
+                        
+            
+                </table>
+             
+                </div>
+
+
+
+        </div>
+
+
+
+  {% comment %} //////////////RECHAZADOS ////////////////{% endcomment %}
+
+        <div class="tab-pane fade" id="nav-RECHAZADO" role="tabpanel" aria-labelledby="nav-RECHAZADO-tab">
+            
+            <div class="card-body table-responsive">
+
+                <table id ="myTable"  class="
+                table 
+                table-striped   
+                table-bordered   
+                table-hover 
+                table-secondary 
+                text-center 
+                dataTable 
+                display 
+                table-hover
+                ">
+                    <thead >
+                    <tr  >
+                    <th style="text-align: center;">#RE</th>
+  
+                    <th style="text-align: center;">FECHA</th> 
+                    <th style="text-align: center;">Estatus</th>
+                    <th style="text-align: center;">OPCIONES</th> 
+                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+        
+        {% for pdf in requisiciones_enviadas_R %}
+        
+                             <tr>
+                                <td  >{{pdf.id}}</td>
+                                  
+        
+        
+        
+                  
+        
+        
+ 
+        
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td> 
+        
+        <td>
+            
+            <span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+
+
+
+        </td>
+                                    
+        
+        
+                                    {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+        
+               {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTER{{forloop.counter0}}">
+            Ver
+            </button>
+            
+            {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="GERENTER" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            
+            
+            
+            
+            
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+        
+                   <a href="{% url 'sign_pdf'  pdf.id  %}"  
+                    class="btn  btn-sm btn-success btnEliminacion">
+                    FIRMAR</a>
+        
+        
+                {% comment %} rechazar {% endcomment %}
+                {% comment %} falta: agregar notificacion de rechazar documento 
+                enviar cambio de status a REQUISICION RECHAZADA
+                {% endcomment %}
+        
+        
+                    <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a>
+        
+        
+                    {%else%}
+        
+        
+        
+                   {%endif%} 
+        
+        </td> 
+                        
+                            
+                        </tr>
+                    
+   
+                        {%endfor%}
+
+                  
+                    </tbody>
+                </table>
+                           
+              
+                </div>
+        </div>
+
+
+
+
+
+
+
+ {% comment %} //////////////ACEPTADOS ////////////////{% endcomment %}
+
+ <div class="tab-pane fade" id="nav-ACEPTADOS" role="tabpanel" aria-labelledby="nav-ACEPTADOS-tab">
+            
+    <div class="card-body table-responsive">
+
+        <table id ="myTable"  class="
+        table 
+        table-striped   
+        table-bordered   
+        table-hover 
+        table-secondary 
+        text-center 
+        dataTable 
+        display 
+        table-hover
+        ">
+            <thead >
+            <tr  >
+            <th style="text-align: center;">#RE</th>
+            <th style="text-align: center;">FECHA</th> 
+            <th style="text-align: center;">Estatus</th>
+            <th style="text-align: center;">OPCIONES</th> 
+            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+{% for pdf in requisiciones_enviadas_A %}
+
+                     <tr>
+                        <td  >{{pdf.id}}</td>
+                          
+
+
+
+           
+
+
+
+                                     
+<td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+
+
+<td>
+    <span class="badge bg-success"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+</td>
+                            
+
+
+                            {% comment %} opciones  {% endcomment %}
+                            
+<td> 
+
+ {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEA{{forloop.counter0}}">
+    Ver
+    </button>
+    
+    {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="GERENTEA" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    
+    
+    
+    
+    
+
+
+        {% comment %} aceptar y firmar por el gerente {% endcomment %}
+        {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+        enviar cambio de status a REQUISICION FIRMADA
+        {% endcomment %}
+
+      
+
+
+        {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+
+           <a href="{% url 'sign_pdf'  pdf.id  %}"  
+            class="btn  btn-sm btn-success btnEliminacion">
+            FIRMAR</a>
+
+
+        {% comment %} rechazar {% endcomment %}
+        {% comment %} falta: agregar notificacion de rechazar documento 
+        enviar cambio de status a REQUISICION RECHAZADA
+        {% endcomment %}
+
+
+            <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+            class="btn  btn-sm btn-danger btnEliminacion">
+            RECHAZAR</a>
+
+
+            {%else%}
+
+
+
+           {%endif%} 
+
+</td> 
+                
+                    
+                </tr>
+            
+
+                {%endfor%}
+            </tbody>
+        </table>
+            
+</div>
+</div>
+
+
+
+
+
+
+{% comment %} //////////////TODOS ////////////////{% endcomment %}
+
+<div class="tab-pane fade" id="nav-ALL" role="tabpanel" aria-labelledby="nav-ALL-tab">
+            
+    <div class="card-body table-responsive">
+
+        <table id ="myTable"  class="
+        table 
+        table-striped   
+        table-bordered   
+        table-hover 
+        table-secondary 
+        text-center 
+        dataTable 
+        display 
+        table-hover
+        ">
+            <thead >
+            <tr  >
+            <th style="text-align: center;">#RE</th>
+            <th style="text-align: center;">FECHA</th> 
+            <th style="text-align: center;">Estatus</th>
+            <th style="text-align: center;">OPCIONES</th> 
+            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+{% for pdf in requisiciones_enviadas %}
+
+                     <tr>
+                        <td  >{{pdf.id}}</td>
+                          
+
+
+
+
+
+
+
+                                     
+<td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td> 
+
+<td>
+
+
+    {% if   pdf.ESTATUS_DOCUMENTO  == "Rechazado por Almacen"  or   pdf.ESTATUS_DOCUMENTO == "Rechazado por Gerente"%}
+    
+    <span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    
+    {% elif   pdf.ESTATUS_DOCUMENTO  == "FIRMADO"  %}
+    
+    <span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    {% elif   pdf.ESTATUS_DOCUMENTO  == "Aceptado por Almacen"  %}
+    
+    
+    
+    <span class="badge bg-success"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    
+    
+    
+    
+    {%else%}
+    
+    
+    
+    <span class="badge bg-primary"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+    
+    
+        {%endif%}
+    
+    
+    </td>
+                            
+
+
+                            {% comment %} opciones  {% endcomment %}
+                            
+<td> 
+
+
+
+
+        {% comment %} aceptar y firmar por el gerente {% endcomment %}
+        {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+        enviar cambio de status a REQUISICION FIRMADA
+        {% endcomment %}
+
+       {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEALL{{forloop.counter0}}">
+    Ver
+    </button>
+    
+    {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="GERENTEALL" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    
+    
+    
+    
+    
+
+
+        {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+
+           <a href="{% url 'sign_pdf'  pdf.id  %}"  
+            class="btn  btn-sm btn-success btnEliminacion">
+            FIRMAR</a>
+
+
+        {% comment %} rechazar {% endcomment %}
+        {% comment %} falta: agregar notificacion de rechazar documento 
+        enviar cambio de status a REQUISICION RECHAZADA
+        {% endcomment %}
+
+
+            <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+            class="btn  btn-sm btn-danger btnEliminacion">
+            RECHAZAR</a>
+
+
+            {%else%}
+
+
+
+           {%endif%} 
+
+</td> 
+                
+                    
+                </tr>
+            
+
+                {%endfor%}
+            </tbody>
+        </table>
+            
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+{% block javascript %}
+
+<script>
+
+
+
+
+  
+        $(document).ready( function () {
+     
+    
+          
+             $('table.display').DataTable({
+               columnDefs: [
+               {
+                   targets: [0],
+                   orderData: [0, 1],
+               },
+               {
+                   targets: [1],
+                   orderData: [1, 0],
+               },
+               {
+                   targets: [3],
+                   orderData: [3, 0],
+               },
+           ],
+     
+           dom: 'lBfrtip',
+           buttons: [
+               //'copy', 'csv', 'excel', 'pdf', 'print'
+           ],
+           language: {
+             "decimal": "",
+             "emptyTable": "No hay información",
+             "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+             "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+             "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+             "infoPostFix": "",
+             "thousands": ",",
+             "lengthMenu": "Mostrar _MENU_ Entradas",
+             "loadingRecords": "Cargando...",
+             "processing": "Procesando...",
+             "search": "Buscar:",
+             "zeroRecords": "Sin resultados encontrados",
+             "paginate": {
+                 "first": "Primero",
+                 "last": "Ultimo",
+                 "next": "Siguiente",
+                 "previous": "Anterior"
+             }
+     
+            
+           }, 
+             
+           });
+     
+    
+             table.draw();
+     
+     
+     
+         });
+
+
+
+
+
+
+
+
+    </script>
+
+{% endblock %}  

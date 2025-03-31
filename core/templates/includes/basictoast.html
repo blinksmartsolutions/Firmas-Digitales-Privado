@@ -1,0 +1,34 @@
+
+<h1>Basic Toast</h1>
+
+<button type="button" class="btn  btn-sm btn-danger" id="basicToastBtn">Join us</button>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="basicToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-primary text-light">
+      <h5 class="my-0">Join Our Company</h5>
+    </div>
+    <div class="toast-body">
+      <strong>Mind Numbing Products</strong> is a force in the manufacturing and production market. Our motto is If it’s not Mind Numbing, it’s not worth it.
+    </div>
+  </div>  
+</div>
+
+
+
+
+
+{% block javascript %}
+<script>
+document.querySelector("#basicToastBtn").onclick = function() {
+    new bootstrap.Toast(document.querySelector('#basicToast')).show();
+   }
+   
+
+
+   $('.toast').toast("show")
+
+</script>
+
+
+{% endblock %}

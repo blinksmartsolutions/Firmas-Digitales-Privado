@@ -1,0 +1,280 @@
+
+{% load crispy_forms_tags %}
+{%load static %}
+
+{% block titulo %}  {%endblock%}
+
+
+{% block contenido%}
+
+<style>
+    section{
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+    
+    section .imgBx{
+        position: relative;
+        width: 50%;
+        height: 100%;
+    }
+    
+    
+    section .imgBx:before{
+    
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(60deg, rgba(50, 48, 56,1) 0%, rgba(22,16,38,1) 100%);
+        z-index: 1;
+        mix-blend-mode: screen;
+    }
+    
+    section .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    } 
+    
+    section .contentBx{
+        display: flex;
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(60deg, rgba(50, 48, 56,1) 0%, rgba(22,16,38,1) 100%);
+
+
+    }
+    
+    
+    section .contentBx .formBx{
+        width: 50%;
+
+
+    
+    }
+    
+    section .contentBx  .formBx h2 {
+     
+        color: white;
+        font-size: 1.5em;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-bottom: 4px solid  rgb(248 248 248);   
+        display: inline-block;
+        letter-spacing: 1px;
+
+    
+    
+    
+        
+    }
+    
+    section .contentBx  .formBx .inputBx {
+        margin-bottom: 20px;
+    }
+    
+    section .contentBx  .formBx .inputBx span {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: white;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    
+    section .contentBx  .formBx .inputBx input {
+        width: 100%;
+        padding: 10px 20px;
+        outline: none;
+        font-weight: 400;
+        border: 1px solid rgb(248 248 248);
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: white;
+        background: transparent;
+        border-radius: 30px;
+    }
+    
+    
+    section .contentBx  .formBx .inputBx input[type="submit"]{
+    
+        background:   linear-gradient(9deg, rgba(36, 32, 47) 3%, rgb(248 248 248) 180%);
+        color: #ffff;
+        outline: none;
+        border: none;
+        font-weight: 500;
+        cursor: pointer;
+    
+    
+    
+    }
+    
+    
+    section .contentBx  .formBx .inputBx input[type="submit"]:hover{
+    
+        background:  rgb(168, 144, 148);
+    
+        /* colocar un transfor */
+    }
+    
+    
+    section .contentBx  .formBx .remember{
+        margin-bottom: 10px;
+        color: white;;
+        font-weight: 400;
+        font-size: 14px;
+    
+    }
+    section .contentBx  .formBx .inputBx p {
+        color: white;
+    
+    }
+    
+    
+    section .contentBx  .formBx .inputBx p a {
+        color: rgb(248 248 248);
+    
+    }
+    
+    @media (max-width: 768px){
+    
+        section .imgBx {
+            position: absolute;
+            top: 0;
+            left: 0;
+    
+            width: 100%;
+            height: 100%;
+    
+        }
+        section .contentBx{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+
+        }
+        section .contentBx .formBx {
+            width: 100%;
+            padding: 40px;
+            
+            background: #161026;
+        }
+    
+         section .contentBx .formBx h3 {
+        color: white;
+        text-align: center;
+        margin: 30px 0 10px;
+        font-weight: 500;
+     }
+    
+    
+     }
+    
+    
+
+</style>
+
+<section>
+
+
+    <div class="imgBx">
+
+
+      
+
+
+        {% comment %} <img src="{% static 'images/Logo Negro.png' %}" alt="fondo"> {% endcomment %}
+
+    </div>
+    <div class="contentBx">
+        <div class="formBx">
+            <img src="{% static 'images/Logo blanco.png' %}" alt="logo" width="200" height="">
+            <h2>Inicio de sesión de Usuario</h2>
+            <form  action=""  method="POST"> {% csrf_token %}
+
+
+                     
+        {% if form.non_field_errors %}
+        <div class="non-field-errors text-light" style="color:white;">
+        {% for err in form.non_field_errors %}
+        <div class="alert alert-warning fade show .fade-out ">{{err}}</div>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+          <br>
+          <br>
+
+
+                <div class="inputBx" >
+                    <span>Correo Electrónico</span>
+                    {{ form.username }} 
+            
+                </div>
+            
+                <div class="inputBx">
+                    <span>Contraseña</span>
+                    {{ form.password }} 
+                    {% comment %} <small>Mostrar contraseña <i class="fa-solid fa-eye" id="togglePassword"></i> </small>  {% endcomment %}
+                   
+                </div>
+
+           
+
+               
+
+
+                {% comment %} <div class="remember">
+                    <label for=""><input type="checkbox" name="">Recúerdame</label>
+                </div> {% endcomment %}
+
+
+                <div class="inputBx">
+                <input type="submit" value="Ingresar" name="">
+                </div>
+{% comment %} 
+                <div class="inputBx">
+                    <p>¿Aún no tienes cuenta?  <a href="{% url 'register' %}">Regístrate</a> </p>
+                </div>
+
+
+                <div class="inputBx">
+                    <p>¿No recuerdas tu contraseña? <br> <a href="{% url 'reset_password' %}">Recuperar contraseña</a> </p>
+                </div> {% endcomment %}
+
+             
+
+
+             
+              
+
+            </form>
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+{%endblock%}

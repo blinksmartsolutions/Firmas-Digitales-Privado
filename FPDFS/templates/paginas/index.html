@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{%load static %}
+
+{% block contenido%}
+
+
+<div class="container-fluid mt-5">
+    <div class="row text-center">
+		<div class="col-md-12">
+
+            <h1 style="color:white;">Solicitud de firma</h1>
+
+
+   
+
+    <iframe
+    
+ src="{{requisiciones_enviadas.0.documento_pdf.url}}"
+ id="documentId" 
+ value="1"
+    
+   width="800" 
+   height="600">
+   </iframe>
+
+ 
+
+</div>
+</div>
+
+
+
+<div class="row text-center">
+    <div class="col-md-12">
+   
+    <p style="color:white;">Firmar a continuación: {{requisiciones_enviadas.0.id}}</p>
+    <canvas id="canvas"></canvas>
+    <br>
+
+    <button><a href="{% url 'dashboard' %}">
+        Regresar 
+     </a></button>
+    <button id="btnLimpiar">Limpiar</button>
+    <button id="btnDescargar">Descargar</button>
+     {% comment %} <button id="btn  btn-smGenerarDocumento">Pasar a documento</button> {% endcomment %}
+    <button id="btnGuardar">Firmar</button>
+    
+    <br>
+    
+</div>
+</div>	
+
+</div>
+
+
+
+
+    {% block javascript %}
+    <script>
+
+        const $canvas = document.querySelector("#canvas"),
+        $btnDescargar = document.querySelector("#btnDescargar"),
+        $btnLimpiar = document.querySelector("#btnLimpiar");
+      // $btnGenerarDocumento = document.querySelector("#btnGenerarDocumento");
+    const contexto = $canvas.getContext("2d");
+    const COLOR_PINCEL = "black";
+    const COLOR_FONDO = "white";
+    const GROSOR = 2;
+    let xAnterior = 0, yAnterior = 0, xActual = 0, yActual = 0;
+    const obtenerXReal = (clientX) => clientX - $canvas.getBoundingClientRect().left;
+    const obtenerYReal = (clientY) => clientY - $canvas.getBoundingClientRect().top;
+    let haComenzadoDibujo = false; // Bandera que indica si el usuario está presionando el botón del mouse sin soltarlo
+    
+    
+    const limpiarCanvas = () => {
+        // Colocar color blanco en fondo de canvas
+        contexto.fillStyle = COLOR_FONDO;
+        contexto.fillRect(0, 0, $canvas.width, $canvas.height);
+    };
+    limpiarCanvas();
+    $btnLimpiar.onclick = limpiarCanvas;
+    // Escuchar clic del botón para descargar el canvas
+    $btnDescargar.onclick = () => {
+        const enlace = document.createElement('a');
+        // El título
+        enlace.download = "Firma.png";
+        // Convertir la imagen a Base64 y ponerlo en el enlace
+        enlace.href = $canvas.toDataURL();
+        // Hacer click en él
+        enlace.click();
+    };
+    
+    window.obtenerImagen = () => {
+        return $canvas.toDataURL();
+    };
+    
+    //$btnGenerarDocumento.onclick = () => {
+    
+    
+        
+        // #window.open("documento.html");
+        //window.open("Contrato.pdf");
+
+
+
+        
+    //};
+
+
+    // Lo demás tiene que ver con pintar sobre el canvas en los eventos del mouse
+    $canvas.addEventListener("mousedown", evento => {
+        // En este evento solo se ha iniciado el clic, así que dibujamos un punto
+        xAnterior = xActual;
+        yAnterior = yActual;
+        xActual = obtenerXReal(evento.clientX);
+        yActual = obtenerYReal(evento.clientY);
+        contexto.beginPath();
+        contexto.fillStyle = COLOR_PINCEL;
+        contexto.fillRect(xActual, yActual, GROSOR, GROSOR);
+        contexto.closePath();
+        // Y establecemos la bandera
+        haComenzadoDibujo = true;
+    });
+    
+    $canvas.addEventListener("mousemove", (evento) => {
+        if (!haComenzadoDibujo) {
+            return;
+        }
+        // El mouse se está moviendo y el usuario está presionando el botón, así que dibujamos todo
+    
+        xAnterior = xActual;
+        yAnterior = yActual;
+        xActual = obtenerXReal(evento.clientX);
+        yActual = obtenerYReal(evento.clientY);
+        contexto.beginPath();
+        contexto.moveTo(xAnterior, yAnterior);
+        contexto.lineTo(xActual, yActual);
+        contexto.strokeStyle = COLOR_PINCEL;
+        contexto.lineWidth = GROSOR;
+        contexto.stroke();
+        contexto.closePath();
+    });
+    ["mouseup", "mouseout"].forEach(nombreDeEvento => {
+        $canvas.addEventListener(nombreDeEvento, () => {
+            haComenzadoDibujo = false;
+        });
+    });
+
+
+
+    const $btnGuardar = document.querySelector("#btnGuardar");
+
+    $btnGuardar.onclick = () => {
+        const imageData = $canvas.toDataURL(); // Get the Base64 string
+        fetch('/save_signature/{{requisiciones_enviadas.0.id}}', { // Adjust the URL to your Django view
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'  // Include CSRF token if CSRF protection is enabled
+            },
+            body: `image=${encodeURIComponent(imageData)}` // Send the image data
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Firma guardada exitosamente!');
+                window.location.href = "{% url 'dashboard' %}";
+            } else {
+                alert('Error al guardar la firma.');
+                window.location.href = "{% url 'dashboard' %}";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+
+
+
+
+
+    </script>
+
+
+    {% endblock %}
+
+{%endblock%}
