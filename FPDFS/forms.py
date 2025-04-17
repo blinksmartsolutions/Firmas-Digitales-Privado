@@ -22,7 +22,7 @@ class documentomixin(forms.ModelForm):
     nombre_documento= forms.CharField(required=True, label="Nombre del documento", 
                               min_length=6, 
                               max_length=20,
-                              validators=[RegexValidator(regex='^[\w.@ +-]+$', 
+                              validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
                               widget=forms.TextInput(attrs={'placeholder': 'Agregue un Nombre del documento'}))
@@ -31,14 +31,14 @@ class documentomixin(forms.ModelForm):
     N_documento= forms.CharField(required=True, label="Número del documento", 
                               min_length=6, 
                               max_length=20,
-                              validators=[RegexValidator(regex='^[\w.@ +-]+$', 
+                              validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
                               widget=forms.TextInput(attrs={'placeholder': 'Agregue un número del documento'}))
         
         
     descripcion_documento=forms.CharField(label="Descripción del documento",
-                                          validators=[RegexValidator(regex='^[\w.@ +-]+$', 
+                                          validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
                                           
@@ -49,7 +49,7 @@ class documentomixin(forms.ModelForm):
         #label='Nueva Requisición',
         required=False, 
         validators=[RegexValidator(
-        regex="^[\w,\s-]+\.[pdf]{3}$",
+        regex=r"^[\w,\s-]+\.[pdf]{3}$",
             message=u'solo se aceptan Pdf.',
             code='invalid_url')],
         help_text="Debes colocar solo archivos en formato pdf."          

@@ -43,8 +43,8 @@ class UserRegisterForm(UserCreationForm):
                                      label="Nombre(s)", 
                                      max_length=40,
                                      widget=forms.TextInput(attrs={'placeholder': 'Agregue su nombre completo'}) , 
-                                     validators=[RegexValidator( regex= '^[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*$', message=(u"Carácter no valido. solo se permite caracteres de A-Z"))] )
-    Apellido_Usuario = forms.CharField(min_length=6, required=True, label="Apellido(s)", max_length=40, widget=forms.TextInput(attrs={'placeholder': 'Agregue su apellido completo'}) , validators=[RegexValidator( regex= '^[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*$', message=(u"Carácter no valido. solo se permite caracteres de A-Z"))])  
+                                     validators=[RegexValidator( regex=r'^[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*$', message=(u"Carácter no valido. solo se permite caracteres de A-Z"))] )
+    Apellido_Usuario = forms.CharField(min_length=6, required=True, label="Apellido(s)", max_length=40, widget=forms.TextInput(attrs={'placeholder': 'Agregue su apellido completo'}) , validators=[RegexValidator(regex=r'^[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*\s{,1}[a-zA-Z_ÑñÁáÉéÍíÓóÚú]*$', message=(u"Carácter no valido. solo se permite caracteres de A-Z"))])  
 
     
     
