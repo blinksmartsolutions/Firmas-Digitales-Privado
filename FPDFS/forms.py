@@ -29,20 +29,16 @@ class documentomixin(forms.ModelForm):
     
         
     N_documento= forms.CharField(required=True, label="Número del documento", 
-                              min_length=6, 
-                              max_length=20,
+                              min_length=5, 
+                              max_length=5,
                               validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
                               widget=forms.TextInput(attrs={'placeholder': 'Agregue un número del documento'}))
         
         
-    descripcion_documento=forms.CharField(label="Descripción del documento",
-                                          validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
-                                                         message=(u"Carácter no valido. solo se permite caracteres de A-Z")
-                                                         )],
-                                          
-                                          widget=forms.Textarea(attrs={"required": False,}))
+    descripcion_documento=forms.CharField(required=False, label="Descripción del documento",
+                                          widget=forms.Textarea(attrs={'placeholder': 'Agregue una descripción del documento', 'rows': 3, 'cols': 20})),
 
     documento_pdf=forms.FileField(   
         widget=forms.FileInput(attrs={'accept':'application/pdf', type:"file" }),
