@@ -77,9 +77,13 @@ class pdfEnviadosGerente(TimestampMixin):
     """ 
     
     
-    nombre_documento =  models.CharField(max_length=22, verbose_name="Nombre del documento",  null=True)
-    N_documento =  models.CharField(max_length=22, verbose_name="Numero del documento", null=True) 
-    descripcion_documento= models.CharField(max_length=460,blank=True, null=True, verbose_name="Descripción del documento" )
+    nombre_documento = models.TextField(verbose_name="Nombre del documento", null=True)
+    N_documento = models.CharField(
+        max_length=5,
+        verbose_name="Numero del documento", 
+        null=True, 
+    )
+    descripcion_documento= models.TextField(blank=True, null=True, verbose_name="Descripción del documento" )
    
     usuario = models.ForeignKey(UsuariosTrime, on_delete = models.CASCADE)
     documento_pdf = models.FileField(upload_to=change_name, validators=[validate_file_extension, file_size],  verbose_name="Requisición")
