@@ -32,7 +32,7 @@ class UsuariosTrime(AbstractBaseUser, PermissionsMixin):
 
     #mail_Usuario = models.EmailField(verbose_name= "Correo")
     Genero =  models.CharField(choices=GENERO, max_length=60, verbose_name="Género", default="MASCULINO")
-    telefono_Usuario =models.CharField(verbose_name="Teléfono", max_length=18,validators=[RegexValidator('^\d{1,10}$')])
+    telefono_Usuario =models.CharField(verbose_name="Teléfono", max_length=18,validators=[RegexValidator(r'^\d{1,10}$')])
 
     fecha_creacion = models.DateField("Fecha de Creacion", auto_now= False, auto_now_add= True)
     fecha_modificacion = models.DateField("Fecha de Modificacion", auto_now= True, auto_now_add= False )
