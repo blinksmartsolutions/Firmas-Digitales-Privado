@@ -86,7 +86,7 @@
       {% comment %} <a class="btn  btn-sm  btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
         
         <!-- Button to Open the Modal -->
-        <button type="button" class="btn  btn-sm  btn-primary btn-sm" data-toggle="modal" data-target="#usuariogeneralmodalN{{forloop.counter0}}">
+        <button type="button" class="btn  btn-sm  btn-primary" data-toggle="modal" data-target="#usuariogeneralmodalN{{forloop.counter0}}">
             Ver
             </button>
             
@@ -105,7 +105,7 @@
                 ELIMINAR</a> {% endcomment %}
 
 
-                <button onclick="redirectToUrl( '{{pdf.id}}' )"  class="btn  btn-sm  btn-danger btn-sm btnEliminacion" >ELIMINAR</button> 
+                <button type="button" class="btn btn-sm btn-danger btnEliminacion" data-pk="{{pdf.id}}">ELIMINAR</button> 
 
                 {%else%}
 
@@ -703,6 +703,27 @@
 
 
     </script>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalConfirmacionLabel">Confirmar acción</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalMensaje">¿Estás seguro que deseas realizar esta acción?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="btnConfirmarAccion">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/modal_confirmacion.js"></script>
 
 {% endblock %}  
 
