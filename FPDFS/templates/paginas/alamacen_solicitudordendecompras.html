@@ -66,7 +66,7 @@
     
     
 
-      {{pdf.id}}
+      {{pdf.N_documento}}
 
 
 
@@ -111,7 +111,7 @@ enviar cambio de status a REQUISICION FIRMADA
     Ver
     </button>
     
-    {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalN" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    {% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalN" pdf=pdf.documento_pdf.url enviado=pdf %}  
         
 
 {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
@@ -192,7 +192,7 @@ enviar cambio de status a REQUISICION RECHAZADA
 <td>
     
 
-      {{pdf.id}}
+      {{pdf.N_documento}}
 
        
 
@@ -238,7 +238,7 @@ enviar cambio de status a REQUISICION RECHAZADA
     Ver
     </button>
     
-    {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalr" pdf=pdf.documento_pdf.url  enviado=pdf %}  
+    {% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalr" pdf=pdf.documento_pdf.url  enviado=pdf %}  
             
       
     
@@ -322,7 +322,7 @@ enviar cambio de status a REQUISICION RECHAZADA
 <tr>
 <td >
 
-{{pdf.id}}
+{{pdf.N_documento}}
 
 </td>
     
@@ -363,7 +363,7 @@ enviar cambio de status a REQUISICION RECHAZADA
     Ver
     </button>
     
-    {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalf" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    {% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalf" pdf=pdf.documento_pdf.url enviado=pdf %}  
             
     
     {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
@@ -443,7 +443,7 @@ enviar cambio de status a REQUISICION RECHAZADA
     
     
 
-      {{pdf.id}}
+      {{pdf.N_documento}}
 
 
 
@@ -516,7 +516,7 @@ enviar cambio de status a REQUISICION RECHAZADA
     Ver
     </button>
     
-    {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalALL" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    {% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE ORDEN DE COMPRAS"  documento="socmodalALL" pdf=pdf.documento_pdf.url enviado=pdf %}  
             
             
     

@@ -46,57 +46,56 @@
                 table-hover
                 ">
                     <thead>
-                        <tr>
-                            <th style="text-align: center;">#RE</th>
-                            <th style="text-align: center;">FECHA</th>
-                            <th style="text-align: center;">Estatus</th>
-                            <th style="text-align: center;">OPCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <tr>
+                    <th style="text-align: center;">#RE</th>
+                    <th style="text-align: center;">FECHA</th> 
+                    <th style="text-align: center;">Estatus</th>
+                    <th style="text-align: center;">OPCIONES</th>       
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                        
+        {% for pdf in requisiciones_enviadas_N %}
+        <tr>
+        <td>{{pdf.N_documento}}</td>
+                                  
 
-
-                        {% for pdf in requisiciones_enviadas_N %}
-                        <tr>
-                            <td>{{pdf.id}}</td>
-
-                            <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
-
-
-                            <td>
-                                <span class="badge bg-primary"> {{pdf.ESTATUS_DOCUMENTO}}</span>
-
-                            </td>
-
-
-                            {% comment %} opciones {% endcomment %}
-
-                            <td>
-
-
-                                {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} "
-                                    target="_blank">ver </a> {% endcomment %}
-
-                                <!-- Button to Open the Modal -->
-                                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#GERENTE{{forloop.counter0}}">
-                                    Ver
-                                </button>
-
-                                {% include "./modal_template.html" with title=pdf.id title2="REQUISICIÓN"
-                                documento="GERENTE" pdf=pdf.documento_pdf.url enviado=pdf%}
-
-
-
-                                {% comment %} aceptar y firmar por el gerente {% endcomment %}
-                                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento
-                                enviar cambio de status a REQUISICION FIRMADA
-                                {% endcomment %}
-
-
-
-
-                                {% if pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
+        
+        
+        <td>
+            <span class="badge bg-primary"> {{pdf.ESTATUS_DOCUMENTO}}</span>
+           
+        </td>
+                      
+        
+        {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+        
+        {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTE{{forloop.counter0}}">
+            Ver
+        </button>
+            
+        {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="GERENTE" pdf=pdf.documento_pdf.url enviado=pdf%}  
+            
+            
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
 
 
 
@@ -178,89 +177,87 @@
                     <tbody>
 
 
-
-                        {% for pdf in requisiciones_enviadas_F %}
-
-                        <tr>
-                            <td>{{pdf.id}}</td>
-
-
-
-
-
-
-
-
-
-
-                            <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
-
-
-
-                            <td>
-
-                                <span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
-
-                            </td>
+    
+        {% for pdf in requisiciones_enviadas_F %}
+        
+                             <tr>
+                                <td  >{{pdf.N_documento}}</td>
+                                  
+        
+        
+        
+                    
+        
+        
+ 
+        
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
 
 
 
-                            {% comment %} opciones {% endcomment %}
-
-                            <td>
-
-                                {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} "
-                                    target="_blank">ver </a> {% endcomment %}
-
-                                <!-- Button to Open the Modal -->
-                                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#GERENTEF{{forloop.counter0}}">
-                                    Ver
-                                </button>
-
-                                {% include "./modal_template.html" with title=pdf.id title2="REQUISICIÓN"
-                                documento="GERENTEF" pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
-
-
-
-
-
-                                {% comment %} aceptar y firmar por el gerente {% endcomment %}
-                                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento
-                                enviar cambio de status a REQUISICION FIRMADA
-                                {% endcomment %}
-
-
-
-
-                                {% if pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
-
-                                <a href="{% url 'sign_pdf'  pdf.id  %}" class="btn  btn-sm btn-success btnEliminacion">
-                                    FIRMAR</a>
-
-
-                                {% comment %} rechazar {% endcomment %}
-                                {% comment %} falta: agregar notificacion de rechazar documento
-                                enviar cambio de status a REQUISICION RECHAZADA
-                                {% endcomment %}
-
-
-                                <a href="{% url 'cambiarEstatusPdf' pdf.id   %}"
-                                    class="btn  btn-sm btn-decline btnEliminacion">
-                                    RECHAZAR</a>
-
-
-                                {%else%}
-
-
-
-                                {%endif%}
-
-                            </td>
-
-
+           <td > 
+         
+         <span class="badge bg-warning text-dark "> {{pdf.ESTATUS_DOCUMENTO}}</span>
+        
+        </td>
+                                    
+        
+        
+                                    {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+                 {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEF{{forloop.counter0}}">
+            Ver
+            </button>
+            
+            {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="GERENTEF" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            
+            
+            
+            
+            
+        
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+        
+                   <a href="{% url 'sign_pdf'  pdf.id  %}"  
+                    class="btn  btn-sm btn-success btnEliminacion">
+                    FIRMAR</a>
+        
+        
+                {% comment %} rechazar {% endcomment %}
+                {% comment %} falta: agregar notificacion de rechazar documento 
+                enviar cambio de status a REQUISICION RECHAZADA
+                {% endcomment %}
+        
+        
+                    <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a>
+        
+        
+                    {%else%}
+        
+        
+        
+                   {%endif%} 
+        
+        </td> 
+                        
+                            
                         </tr>
 
 
@@ -307,88 +304,87 @@
                     <tbody>
 
 
-
-                        {% for pdf in requisiciones_enviadas_R %}
-
-                        <tr>
-                            <td>{{pdf.id}}</td>
-
-
-
-
-
-
-
-
-
-
-                            <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
-
-                            <td>
-
-                                <span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
-
-
-
-                            </td>
+        
+        {% for pdf in requisiciones_enviadas_R %}
+        
+                             <tr>
+                                <td  >{{pdf.N_documento}}</td>
+                                  
+        
+        
+        
+                  
+        
+        
+ 
+        
+                                             
+        <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td> 
+        
+        <td>
+            
+            <span class="badge bg-danger"> {{pdf.ESTATUS_DOCUMENTO}}</span>
 
 
 
-                            {% comment %} opciones {% endcomment %}
-
-                            <td>
-
-
-                                {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} "
-                                    target="_blank">ver </a> {% endcomment %}
-
-                                <!-- Button to Open the Modal -->
-                                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#GERENTER{{forloop.counter0}}">
-                                    Ver
-                                </button>
-
-                                {% include "./modal_template.html" with title=pdf.id title2="REQUISICIÓN"
-                                documento="GERENTER" pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
-
-
-
-
-                                {% comment %} aceptar y firmar por el gerente {% endcomment %}
-                                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento
-                                enviar cambio de status a REQUISICION FIRMADA
-                                {% endcomment %}
-
-
-
-
-                                {% if pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
-
-                                <a href="{% url 'sign_pdf'  pdf.id  %}" class="btn  btn-sm btn-success btnEliminacion">
-                                    FIRMAR</a>
-
-
-                                {% comment %} rechazar {% endcomment %}
-                                {% comment %} falta: agregar notificacion de rechazar documento
-                                enviar cambio de status a REQUISICION RECHAZADA
-                                {% endcomment %}
-
-
-                                <button onclick="redirectToUrl('{{pdf.id}}', 'cambiarEstatusPdf')"
-                                    class="btn btn-sm btn-decline btnEliminacion">RECHAZAR</button>
-
-
-                                {%else%}
-
-
-
-                                {%endif%}
-
-                            </td>
-
-
+        </td>
+                                    
+        
+        
+                                    {% comment %} opciones  {% endcomment %}
+                                    
+        <td> 
+        
+        
+               {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver  </a>  {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTER{{forloop.counter0}}">
+            Ver
+            </button>
+            
+            {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="GERENTER" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            
+            
+            
+            
+            
+        
+                {% comment %} aceptar y firmar por el gerente {% endcomment %}
+                {% comment %} falta: agregar notificacion de ACEPTAR DOCUMENTO Y FIRMAR documento 
+                enviar cambio de status a REQUISICION FIRMADA
+                {% endcomment %}
+        
+              
+        
+        
+                {% if  pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
+        
+                   <a href="{% url 'sign_pdf'  pdf.id  %}"  
+                    class="btn  btn-sm btn-success btnEliminacion">
+                    FIRMAR</a>
+        
+        
+                {% comment %} rechazar {% endcomment %}
+                {% comment %} falta: agregar notificacion de rechazar documento 
+                enviar cambio de status a REQUISICION RECHAZADA
+                {% endcomment %}
+        
+        
+                    <a href="{% url 'cambiarEstatusPdf' pdf.id   %}" 
+                    class="btn  btn-sm btn-danger btnEliminacion">
+                    RECHAZAR</a>
+        
+        
+                    {%else%}
+        
+        
+        
+                   {%endif%} 
+        
+        </td> 
+                        
+                            
                         </tr>
 
 
@@ -438,9 +434,9 @@
 
                         {% for pdf in requisiciones_enviadas_A %}
 
-                        <tr>
-                            <td>{{pdf.id}}</td>
-
+                     <tr>
+                        <td  >{{pdf.N_documento}}</td>
+                          
 
 
 
@@ -465,19 +461,17 @@
                                 {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} "
                                     target="_blank">ver </a> {% endcomment %}
 
-                                <!-- Button to Open the Modal -->
-                                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#GERENTEA{{forloop.counter0}}">
-                                    Ver
-                                </button>
-
-                                {% include "./modal_template.html" with title=pdf.id title2="REQUISICIÓN"
-                                documento="GERENTEA" pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
-
-
-
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEA{{forloop.counter0}}">
+    Ver
+    </button>
+    
+    {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="GERENTEA" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    
+    
+    
+    
+    
 
 
                                 {% comment %} aceptar y firmar por el gerente {% endcomment %}
@@ -559,9 +553,9 @@
 
                         {% for pdf in requisiciones_enviadas %}
 
-                        <tr>
-                            <td>{{pdf.id}}</td>
-
+                     <tr>
+                        <td  >{{pdf.N_documento}}</td>
+                          
 
 
 
@@ -624,19 +618,17 @@
                                 {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} "
                                     target="_blank">ver </a> {% endcomment %}
 
-                                <!-- Button to Open the Modal -->
-                                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                                    data-target="#GERENTEALL{{forloop.counter0}}">
-                                    Ver
-                                </button>
-
-                                {% include "./modal_template.html" with title=pdf.id title2="REQUISICIÓN"
-                                documento="GERENTEALL" pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
-
-
-
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#GERENTEALL{{forloop.counter0}}">
+    Ver
+    </button>
+    
+    {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="GERENTEALL" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    
+    
+    
+    
+    
 
 
                                 {% if pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}

@@ -124,16 +124,14 @@
                 </a>
                 {% endcomment %}
 
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                  data-target="#odcmodaln{{forloop.counter0}}">
-                  Ver
-                </button>
-
-                {% include "./modal_template.html" with title=pdf.id title2="ORDEN DE COMPRA" documento="odcmodaln"
-                pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#odcmodaln{{forloop.counter0}}">
+  Ver
+  </button>
+  
+  {% include "./modal_template.html" with title=pdf.N_documento  title2="ORDEN DE COMPRA"  documento="odcmodaln"  pdf=pdf.documento_pdf.url enviado=pdf %}  
+  
+  
 
                 {% if user.groups.all.0.name == "GERENCIA GENERAL" %}
 
@@ -265,16 +263,14 @@
                 </a>
                 {% endcomment %}
 
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                  data-target="#odcmodalr{{forloop.counter0}}">
-                  Ver
-                </button>
-
-                {% include "./modal_template.html" with title=pdf.id title2="ORDEN DE COMPRA" documento="odcmodalr"
-                pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
+<!-- Button to Open the Modal -->
+<button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#odcmodalr{{forloop.counter0}}">
+  Ver
+  </button>
+  
+  {% include "./modal_template.html" with title=pdf.N_documento  title2="ORDEN DE COMPRA"  documento="odcmodalr"  pdf=pdf.documento_pdf.url enviado=pdf %}  
+  
+  
 
                 {% if user.groups.all.0.name == "GERENCIA GENERAL" %}
 
@@ -396,23 +392,20 @@
               </td>
 
 
-
-
-              <td>
-
-                {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver
-                </a>
-                {% endcomment %}
-
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                  data-target="#odcmodalf{{forloop.counter0}}">
-                  Ver
-                </button>
-
-                {% include "./modal_template.html" with title=pdf.id title2="ORDEN DE COMPRA" documento="odcmodalf"
-                pdf=pdf.documento_pdf.url enviado=pdf %}
-
+        
+        
+        <td> 
+        
+    {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver </a>
+        {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#odcmodalf{{forloop.counter0}}">
+          Ver
+          </button>
+          
+          {% include "./modal_template.html" with title=pdf.N_documento  title2="ORDEN DE COMPRA"  documento="odcmodalf"  pdf=pdf.documento_pdf.url enviado=pdf %}  
+          
 
                 {% if user.groups.all.0.name == "GERENCIA GENERAL" %}
 
@@ -581,22 +574,19 @@
 
               <td>
 
-                {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver
-                </a>
-                {% endcomment %}
-
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal"
-                  data-target="#odcmodalall{{forloop.counter0}}">
-                  Ver
-                </button>
-
-                {% include "./modal_template.html" with title=pdf.id title2="ORDEN DE COMPRA" documento="odcmodalall"
-                pdf=pdf.documento_pdf.url enviado=pdf %}
-
-
-
-                {% if user.groups.all.0.name == "GERENCIA GENERAL" %}
+              {% comment %} <a class="btn  btn-sm btn-primary" href=" {{pdf.documento_pdf.url}} " target="_blank">ver </a>
+        {% endcomment %}
+        
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#odcmodalall{{forloop.counter0}}">
+          Ver
+          </button>
+          
+          {% include "./modal_template.html" with title=pdf.N_documento  title2="ORDEN DE COMPRA"  documento="odcmodalall"  pdf=pdf.documento_pdf.url enviado=pdf %}  
+          
+          
+        
+          {% if  user.groups.all.0.name == "GERENCIA GENERAL" %}
 
                 {% if pdf.ESTATUS_DOCUMENTO == "ENVIADO" %}
 
