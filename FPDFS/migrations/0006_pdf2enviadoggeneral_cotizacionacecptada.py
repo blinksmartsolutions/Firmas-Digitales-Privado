@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('FPDFS', '0005_cotizaciondecompras_requisicioncancelada_and_more'),
+        ("FPDFS", "0005_cotizaciondecompras_requisicioncancelada_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='pdf2enviadoggeneral',
-            name='cotizacionAcecptada',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='FPDFS.cotizaciondecompras'),
+            model_name="pdf2enviadoggeneral",
+            name="cotizacionAcecptada",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="FPDFS.cotizaciondecompras",
+            ),
             preserve_default=False,
         ),
     ]

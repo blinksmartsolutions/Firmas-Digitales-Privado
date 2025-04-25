@@ -6,38 +6,110 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('FPDFS', '0007_remove_cotizaciondecompras_requisicioncancelada_and_more'),
+        ("FPDFS", "0007_remove_cotizaciondecompras_requisicioncancelada_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cotizaciondecompras',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="cotizaciondecompras",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdf2enviadoggeneral',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdf2enviadoggeneral",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosalmacen',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadosalmacen",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadoscompras',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadoscompras",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosgerente',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadosgerente",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='solicitudordendecompras',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('Rechazado por Almacen', 'Rechazado por Almacen'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=22, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="solicitudordendecompras",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("Rechazado por Almacen", "Rechazado por Almacen"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=22,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
     ]

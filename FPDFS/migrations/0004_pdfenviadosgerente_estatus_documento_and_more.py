@@ -11,75 +11,269 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('FPDFS', '0003_signature_pdf_file_firmado_alter_signature_image'),
+        ("FPDFS", "0003_signature_pdf_file_firmado_alter_signature_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='pdfenviadosgerente',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadosgerente",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.CreateModel(
-            name='pdfEnviadosCompras',
+            name="pdfEnviadosCompras",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('ESTATUS_DOCUMENTO', models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "ESTATUS_DOCUMENTO",
+                    models.CharField(
+                        choices=[
+                            ("ENVIADO", "ENVIADO"),
+                            ("FIRMADO", "FIRMADO"),
+                            ("RECHAZADO", "RECHAZADO"),
+                            ("EN ESPERA", "EN ESPERA"),
+                        ],
+                        default="ENVIADO",
+                        max_length=15,
+                        verbose_name="ESTADO DEL DOCUMENTO",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'PDFtoCompras',
-                'verbose_name_plural': 'PDFtoCompras',
+                "verbose_name": "PDFtoCompras",
+                "verbose_name_plural": "PDFtoCompras",
             },
         ),
         migrations.CreateModel(
-            name='pdfEnviadosAlmacen',
+            name="pdfEnviadosAlmacen",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('ESTATUS_DOCUMENTO', models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "ESTATUS_DOCUMENTO",
+                    models.CharField(
+                        choices=[
+                            ("ENVIADO", "ENVIADO"),
+                            ("FIRMADO", "FIRMADO"),
+                            ("RECHAZADO", "RECHAZADO"),
+                            ("EN ESPERA", "EN ESPERA"),
+                        ],
+                        default="ENVIADO",
+                        max_length=15,
+                        verbose_name="ESTADO DEL DOCUMENTO",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'PDFtoAlmacen',
-                'verbose_name_plural': 'PDFtoAlmacen',
+                "verbose_name": "PDFtoAlmacen",
+                "verbose_name_plural": "PDFtoAlmacen",
             },
         ),
         migrations.CreateModel(
-            name='pdf2EnviadoGGeneral',
+            name="pdf2EnviadoGGeneral",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('nombre_documento', models.CharField(max_length=60)),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('ESTATUS_DOCUMENTO', models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                ("nombre_documento", models.CharField(max_length=60)),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "ESTATUS_DOCUMENTO",
+                    models.CharField(
+                        choices=[
+                            ("ENVIADO", "ENVIADO"),
+                            ("FIRMADO", "FIRMADO"),
+                            ("RECHAZADO", "RECHAZADO"),
+                            ("EN ESPERA", "EN ESPERA"),
+                        ],
+                        default="ENVIADO",
+                        max_length=15,
+                        verbose_name="ESTADO DEL DOCUMENTO",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Orden de Compra',
-                'verbose_name_plural': 'Ordenes de Compras',
+                "verbose_name": "Orden de Compra",
+                "verbose_name_plural": "Ordenes de Compras",
             },
         ),
         migrations.CreateModel(
-            name='cotizaciondeCompras',
+            name="cotizaciondeCompras",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('nombre_documento', models.CharField(max_length=60)),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('ESTATUS_DOCUMENTO', models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                ("nombre_documento", models.CharField(max_length=60)),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "ESTATUS_DOCUMENTO",
+                    models.CharField(
+                        choices=[
+                            ("ENVIADO", "ENVIADO"),
+                            ("FIRMADO", "FIRMADO"),
+                            ("RECHAZADO", "RECHAZADO"),
+                            ("EN ESPERA", "EN ESPERA"),
+                        ],
+                        default="ENVIADO",
+                        max_length=15,
+                        verbose_name="ESTADO DEL DOCUMENTO",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Cotizacion',
-                'verbose_name_plural': 'Cotizaciones',
+                "verbose_name": "Cotizacion",
+                "verbose_name_plural": "Cotizaciones",
             },
         ),
     ]

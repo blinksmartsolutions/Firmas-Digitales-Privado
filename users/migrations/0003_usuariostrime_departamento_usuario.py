@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_alter_usuariostrime_cedula_usuario'),
+        ("users", "0002_alter_usuariostrime_cedula_usuario"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usuariostrime',
-            name='Departamento_Usuario',
-            field=models.CharField(max_length=60, null=True, verbose_name='Departamento_Usuario'),
+            model_name="usuariostrime",
+            name="Departamento_Usuario",
+            field=models.CharField(
+                max_length=60, null=True, verbose_name="Departamento_Usuario"
+            ),
         ),
     ]

@@ -6,23 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('FPDFS', '0014_alter_cotizaciondecompras_estatus_documento_and_more'),
+        ("FPDFS", "0014_alter_cotizaciondecompras_estatus_documento_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='pdfenviadosgerente',
-            name='N_documento',
-            field=models.CharField(max_length=5, null=True, verbose_name='Numero del documento'),
+            model_name="pdfenviadosgerente",
+            name="N_documento",
+            field=models.CharField(
+                max_length=5, null=True, verbose_name="Numero del documento"
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosgerente',
-            name='descripcion_documento',
-            field=models.TextField(blank=True, null=True, verbose_name='Descripción del documento'),
+            model_name="pdfenviadosgerente",
+            name="descripcion_documento",
+            field=models.TextField(
+                blank=True, null=True, verbose_name="Descripción del documento"
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosgerente',
-            name='nombre_documento',
-            field=models.TextField(max_length=255, null=True, verbose_name='Nombre del documento'),
+            model_name="pdfenviadosgerente",
+            name="nombre_documento",
+            field=models.TextField(
+                max_length=255, null=True, verbose_name="Nombre del documento"
+            ),
         ),
     ]

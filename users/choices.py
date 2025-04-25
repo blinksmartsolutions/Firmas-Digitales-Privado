@@ -1,6 +1,4 @@
-
 GENERO = (
     ("MASCULINO", "MASCULINO"),
     ("FEMENINO", "FEMENINO"),
-    
 )

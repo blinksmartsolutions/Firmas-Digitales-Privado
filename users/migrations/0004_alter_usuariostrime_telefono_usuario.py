@@ -7,13 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0003_usuariostrime_departamento_usuario'),
+        ("users", "0003_usuariostrime_departamento_usuario"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='usuariostrime',
-            name='telefono_Usuario',
-            field=models.CharField(max_length=18, validators=[django.core.validators.RegexValidator('^\\d{1,10}$')], verbose_name='Teléfono'),
+            model_name="usuariostrime",
+            name="telefono_Usuario",
+            field=models.CharField(
+                max_length=18,
+                validators=[django.core.validators.RegexValidator("^\\d{1,10}$")],
+                verbose_name="Teléfono",
+            ),
         ),
     ]

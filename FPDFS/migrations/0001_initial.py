@@ -17,23 +17,64 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='AuditMixin',
+            name="AuditMixin",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='pdfEnviadosGerente',
+            name="pdfEnviadosGerente",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'PDFtoGerente',
-                'verbose_name_plural': 'PDFtoGerente',
+                "verbose_name": "PDFtoGerente",
+                "verbose_name_plural": "PDFtoGerente",
             },
         ),
     ]

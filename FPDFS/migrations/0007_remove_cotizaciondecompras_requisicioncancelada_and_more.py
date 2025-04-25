@@ -11,60 +11,172 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('FPDFS', '0006_pdf2enviadoggeneral_cotizacionacecptada'),
+        ("FPDFS", "0006_pdf2enviadoggeneral_cotizacionacecptada"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='cotizaciondecompras',
-            name='requisicionCancelada',
+            model_name="cotizaciondecompras",
+            name="requisicionCancelada",
         ),
         migrations.AlterField(
-            model_name='cotizaciondecompras',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="cotizaciondecompras",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdf2enviadoggeneral',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdf2enviadoggeneral",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosalmacen',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadosalmacen",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadoscompras',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadoscompras",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadosgerente',
-            name='ESTATUS_DOCUMENTO',
-            field=models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO'),
+            model_name="pdfenviadosgerente",
+            name="ESTATUS_DOCUMENTO",
+            field=models.CharField(
+                choices=[
+                    ("ENVIADO", "ENVIADO"),
+                    ("FIRMADO", "FIRMADO"),
+                    ("RECHAZADO", "RECHAZADO"),
+                    ("COTIZANDO", "COTIZANDO"),
+                    ("EN ESPERA", "EN ESPERA"),
+                ],
+                default="ENVIADO",
+                max_length=15,
+                verbose_name="ESTADO DEL DOCUMENTO",
+            ),
         ),
         migrations.CreateModel(
-            name='solicitudOrdendeCompras',
+            name="solicitudOrdendeCompras",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(auto_now_add=True, verbose_name='Fecha de Creacion')),
-                ('fecha_modificacion', models.DateField(auto_now=True, verbose_name='Fecha de Modificacion')),
-                ('nombre_documento', models.CharField(max_length=60)),
-                ('documento_pdf', models.FileField(upload_to=FPDFS.models.change_name, validators=[FPDFS.validators.validate_file_extension, FPDFS.validators.file_size])),
-                ('ESTATUS_DOCUMENTO', models.CharField(choices=[('ENVIADO', 'ENVIADO'), ('FIRMADO', 'FIRMADO'), ('RECHAZADO', 'RECHAZADO'), ('COTIZANDO', 'COTIZANDO'), ('EN ESPERA', 'EN ESPERA')], default='ENVIADO', max_length=15, verbose_name='ESTADO DEL DOCUMENTO')),
-                ('requisicionCancelada', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='FPDFS.pdfenviadosalmacen')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fecha_creacion",
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Fecha de Creacion"
+                    ),
+                ),
+                (
+                    "fecha_modificacion",
+                    models.DateField(
+                        auto_now=True, verbose_name="Fecha de Modificacion"
+                    ),
+                ),
+                ("nombre_documento", models.CharField(max_length=60)),
+                (
+                    "documento_pdf",
+                    models.FileField(
+                        upload_to=FPDFS.models.change_name,
+                        validators=[
+                            FPDFS.validators.validate_file_extension,
+                            FPDFS.validators.file_size,
+                        ],
+                    ),
+                ),
+                (
+                    "ESTATUS_DOCUMENTO",
+                    models.CharField(
+                        choices=[
+                            ("ENVIADO", "ENVIADO"),
+                            ("FIRMADO", "FIRMADO"),
+                            ("RECHAZADO", "RECHAZADO"),
+                            ("COTIZANDO", "COTIZANDO"),
+                            ("EN ESPERA", "EN ESPERA"),
+                        ],
+                        default="ENVIADO",
+                        max_length=15,
+                        verbose_name="ESTADO DEL DOCUMENTO",
+                    ),
+                ),
+                (
+                    "requisicionCancelada",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="FPDFS.pdfenviadosalmacen",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Solicitud de orden de compras',
-                'verbose_name_plural': 'Solicitud de orden de compras',
+                "verbose_name": "Solicitud de orden de compras",
+                "verbose_name_plural": "Solicitud de orden de compras",
             },
         ),
         migrations.AddField(
-            model_name='cotizaciondecompras',
-            name='solcitudOrdendeCompras',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='FPDFS.solicitudordendecompras'),
+            model_name="cotizaciondecompras",
+            name="solcitudOrdendeCompras",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="FPDFS.solicitudordendecompras",
+            ),
             preserve_default=False,
         ),
     ]

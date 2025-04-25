@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('FPDFS', '0002_signature'),
+        ("FPDFS", "0002_signature"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='signature',
-            name='pdf_file_firmado',
-            field=models.FileField(blank=True, upload_to='pdfs/'),
+            model_name="signature",
+            name="pdf_file_firmado",
+            field=models.FileField(blank=True, upload_to="pdfs/"),
         ),
         migrations.AlterField(
-            model_name='signature',
-            name='image',
-            field=models.ImageField(upload_to='firmas/'),
+            model_name="signature",
+            name="image",
+            field=models.ImageField(upload_to="firmas/"),
         ),
     ]

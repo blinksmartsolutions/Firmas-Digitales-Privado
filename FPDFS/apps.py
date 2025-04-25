@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class FpdfsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'FPDFS'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "FPDFS"

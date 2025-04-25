@@ -7,24 +7,34 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('FPDFS', '0004_pdfenviadosgerente_estatus_documento_and_more'),
+        ("FPDFS", "0004_pdfenviadosgerente_estatus_documento_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='cotizaciondecompras',
-            name='requisicionCancelada',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='FPDFS.pdfenviadoscompras'),
+            model_name="cotizaciondecompras",
+            name="requisicionCancelada",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="FPDFS.pdfenviadoscompras",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='pdfenviadosalmacen',
-            name='documento_pdf',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='FPDFS.pdfenviadosgerente'),
+            model_name="pdfenviadosalmacen",
+            name="documento_pdf",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="FPDFS.pdfenviadosgerente",
+            ),
         ),
         migrations.AlterField(
-            model_name='pdfenviadoscompras',
-            name='documento_pdf',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='FPDFS.pdfenviadosalmacen'),
+            model_name="pdfenviadoscompras",
+            name="documento_pdf",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="FPDFS.pdfenviadosalmacen",
+            ),
         ),
     ]
