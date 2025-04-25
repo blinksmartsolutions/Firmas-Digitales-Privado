@@ -66,7 +66,7 @@ table-hover
 <td>
 
 
-{{pdf.requisicionCancelada.documento_pdf.id}}
+{{pdf.requisicionCancelada.documento_pdf.N_documento}}
 
 
 
@@ -77,7 +77,7 @@ table-hover
 
 
 
-<td>{{pdf.id}}</td>
+<td>{{pdf.N_documento}}</td>
 
 
 
@@ -110,7 +110,7 @@ table-hover
                                 Ver
                               </button>
                             
-                              {% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalN" pdf=pdf.documento_pdf.url enviado=pdf  %}  
+                              {% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE COMPRAS"  documento="soccmodalN" pdf=pdf.documento_pdf.url enviado=pdf  %}  
                             
                             
                                               {% comment %} <a class="btn  btn-sm btn-primary"
@@ -182,7 +182,7 @@ table-hover
 <td>
 
 
-{{pdf.requisicionCancelada.documento_pdf.id}}
+{{pdf.requisicionCancelada.documento_pdf.N_documento}}
 
 
 
@@ -229,7 +229,7 @@ table-hover
 Ver
 </button>
 
-{% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalR" pdf=pdf.documento_pdf.url enviado=pdf %}  
+{% include "./modal_template.html" with title=pdf.N_documento  title2="SOLICITUD DE COMPRAS"  documento="soccmodalR" pdf=pdf.documento_pdf.url enviado=pdf %}  
 
 
     {% comment %} <a class="btn  btn-sm btn-primary"
@@ -309,7 +309,7 @@ Ver
 <td>
 
 
-{{pdf.requisicionCancelada.documento_pdf.id}}
+{{pdf.requisicionCancelada.documento_pdf.N_documento}}
 
 
 
@@ -320,7 +320,7 @@ Ver
 
 
 
-<td>{{pdf.id}}</td>
+<td>{{pdf.N_documento}}</td>
 
 
 
@@ -384,7 +384,7 @@ Ver
 Ver
 </button>
 
-{% include "./modal_template.html" with title=pdf.id  title2="SOLICITUD DE COMPRAS"  documento="soccmodalall" pdf=pdf.documento_pdf.url enviado=pdf %}  
+{% include "./modal_template.html" with title=pdf.N_documento title2="SOLICITUD DE COMPRAS"  documento="soccmodalall" pdf=pdf.documento_pdf.url enviado=pdf %}  
 
 
 {% comment %} <a class="btn  btn-sm btn-primary"

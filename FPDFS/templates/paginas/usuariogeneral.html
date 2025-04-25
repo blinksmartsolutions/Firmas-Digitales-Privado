@@ -58,7 +58,7 @@
         {% for pdf in requisiciones_enviadas_N %}
         
     <tr>
-    <td>{{pdf.id}}</td>
+    <td>{{pdf.N_documento}}</td>
                                   
                                      
         <td>{{pdf.fecha_creacion|date:"d/m/Y"}}</td>
@@ -90,7 +90,7 @@
             Ver
             </button>
             
-            {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="usuariogeneralmodalN" pdf=pdf.documento_pdf.url enviado=pdf  %}  
+            {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="usuariogeneralmodalN" pdf=pdf.documento_pdf.url enviado=pdf  %}  
             
             
             
@@ -171,7 +171,7 @@
         {% for pdf in requisiciones_enviadas_F %}
         
                              <tr>
-                                <td  >{{pdf.id}}</td>
+                                <td  >{{pdf.N_documento}}</td>
                                   
         
         
@@ -204,7 +204,7 @@
             Ver
             </button>
             
-            {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="usuariogeneralmodalF" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="usuariogeneralmodalF" pdf=pdf.documento_pdf.url enviado=pdf %}  
             
             
             
@@ -279,7 +279,7 @@
         {% for pdf in requisiciones_enviadas_R %}
         
                              <tr>
-                                <td  >{{pdf.id}}</td>
+                                <td  >{{pdf.N_documento}}</td>
                                   
         
         
@@ -322,7 +322,7 @@
             Ver
             </button>
             
-            {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="usuariogeneralmodalR" pdf=pdf.documento_pdf.url enviado=pdf %}  
+            {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="usuariogeneralmodalR" pdf=pdf.documento_pdf.url enviado=pdf %}  
             
             
             
@@ -399,7 +399,7 @@
 {% for pdf in requisiciones_enviadas_A %}
 
                      <tr>
-                        <td  >{{pdf.id}}</td>
+                        <td  >{{pdf.N_documento}}</td>
                           
 
 
@@ -435,7 +435,7 @@
     Ver
     </button>
     
-    {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="usuariogeneralmodalA" pdf=pdf.documento_pdf.url enviado=pdf %}  
+    {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="usuariogeneralmodalA" pdf=pdf.documento_pdf.url enviado=pdf %}  
     
     
     
@@ -507,7 +507,7 @@
 {% for pdf in requisiciones_enviadas %}
 
                      <tr>
-                        <td  >{{pdf.id}}</td>
+                        <td  >{{pdf.N_documento}}</td>
                           
 
 
@@ -575,7 +575,7 @@
     Ver
     </button>
     
-    {% include "./modal_template.html" with  title=pdf.id  title2="REQUISICIÓN"  documento="usuariogeneralmodalALL" pdf=pdf.documento_pdf.url enviado=pdf  %}  
+    {% include "./modal_template.html" with  title=pdf.N_documento  title2="REQUISICIÓN"  documento="usuariogeneralmodalALL" pdf=pdf.documento_pdf.url enviado=pdf  %}  
     
     
       
