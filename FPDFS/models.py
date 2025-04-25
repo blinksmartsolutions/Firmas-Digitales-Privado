@@ -77,7 +77,7 @@ class pdfEnviadosGerente(TimestampMixin):
     """ 
     
     
-    nombre_documento = models.TextField(verbose_name="Nombre del documento", null=True)
+    nombre_documento = models.TextField(max_length=255, verbose_name="Nombre del documento", null=True)
     N_documento = models.CharField(
         max_length=5,
         verbose_name="Numero del documento", 
@@ -156,7 +156,7 @@ class solicitudOrdendeCompras(TimestampMixin):
     """ 
     
     
-    nombre_documento =  models.CharField(max_length=22, verbose_name="Nombre del documento",  null=True)
+    nombre_documento =  models.CharField(max_length=255, verbose_name="Nombre del documento",  null=True)
     N_documento =  models.CharField(max_length=22, verbose_name="Numero del documento", null=True) 
     descripcion_documento= models.CharField(max_length=460,blank=True, null=True, verbose_name="Descripción del documento" )
     
@@ -190,7 +190,7 @@ class cotizaciondeCompras(TimestampMixin):
     usuario = models.ForeignKey(UsuariosTrime, on_delete = models.CASCADE)
     solcitudOrdendeCompras = models.ForeignKey(solicitudOrdendeCompras, on_delete = models.CASCADE)
     
-    nombre_documento=models.CharField(max_length=60,)
+    nombre_documento=models.CharField(max_length=255)
     documento_pdf = models.FileField(upload_to=change_name, validators=[validate_file_extension, file_size])
     ESTATUS_DOCUMENTO = models.CharField(choices=ESTATUS, max_length=22, verbose_name="ESTADO DEL DOCUMENTO", default="ENVIADO")
     
@@ -215,7 +215,7 @@ class pdf2EnviadoGGeneral(TimestampMixin):
     """ modelo donde se guarda el documento de ordenes de compras
     """    
     
-    nombre_documento =  models.CharField(max_length=22, verbose_name="Nombre del documento",  null=True)
+    nombre_documento =  models.CharField(max_length=255, verbose_name="Nombre del documento",  null=True)
     N_documento =  models.CharField(max_length=22, verbose_name="Numero del documento", null=True) 
     descripcion_documento= models.CharField(max_length=460,blank=True, null=True, verbose_name="Descripción del documento" )
     

@@ -20,8 +20,7 @@ from django.core.validators import RegexValidator
 
 class documentomixin(forms.ModelForm):
     nombre_documento= forms.CharField(required=True, label="Nombre del documento", 
-                              min_length=6, 
-                              max_length=20,
+                              min_length=6,
                               validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
@@ -30,7 +29,6 @@ class documentomixin(forms.ModelForm):
         
     N_documento= forms.CharField(required=True, label="Número del documento", 
                               min_length=5, 
-                              max_length=5,
                               validators=[RegexValidator(regex=r'^[\w.@ +-]+$', 
                                                          message=(u"Carácter no valido. solo se permite caracteres de A-Z")
                                                          )],
